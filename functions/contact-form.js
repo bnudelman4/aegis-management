@@ -26,7 +26,11 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    console.log('Contact form function called');
+    console.log('Event body:', event.body);
+    
     const formData = JSON.parse(event.body);
+    console.log('Parsed form data:', formData);
     
     // Validate required fields
     if (!formData.name || !formData.email || !formData.message) {
@@ -40,8 +44,12 @@ exports.handler = async (event, context) => {
       };
     }
 
+    console.log('Creating email transporter...');
+    console.log('EMAIL_USER:', process.env.EMAIL_USER ? 'Set' : 'Not set');
+    console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? 'Set' : 'Not set');
+    
     // Create email transporter
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
@@ -114,7 +122,7 @@ exports.handler = async (event, context) => {
       headers,
       body: JSON.stringify({
         success: false,
-        message: 'Internal server error'
+        message: `Internal server error: ${error.message}`
       })
     };
   }

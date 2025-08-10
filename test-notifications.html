@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .success { background: #28a745; color: white; }
+        .error { background: #dc3545; color: white; }
+        .info { background: #17a2b8; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Notification System Test</h1>
+    <p>Click the buttons below to test different notification types:</p>
+    
+    <div class="test-buttons">
+        <button class="success" onclick="testSuccess()">Test Success</button>
+        <button class="error" onclick="testError()">Test Error</button>
+        <button class="info" onclick="testInfo()">Test Info</button>
+    </div>
+    
+    <p><strong>Expected behavior:</strong></p>
+    <ul>
+        <li><strong>Success:</strong> Should show without X button, auto-remove after 5 seconds</li>
+        <li><strong>Error:</strong> Should show with X button, can be closed manually</li>
+        <li><strong>Info:</strong> Should show with X button, can be closed manually</li>
+    </ul>
+
+    <script>
+        // Copy the notification function from script.js
+        function showNotification(message, type = 'info', position = 'top-right') {
+            // Remove existing notifications
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notification => notification.remove());
+
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            
+            // Don't show close button for success messages
+            if (type === 'success') {
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <span class="notification-message">${message}</span>
+                    </div>
+                `;
+            } else {
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <span class="notification-message">${message}</span>
+                        <button class="notification-close">&times;</button>
+                    </div>
+                `;
+            }
+
+            // Add styles based on position
+            let positionStyles = '';
+            if (position === 'top-left') {
+                positionStyles = `
+                    top: 20px;
+                    left: 20px;
+                    transform: translateX(-100%);
+                `;
+            } else {
+                positionStyles = `
+                    top: 20px;
+                    right: 20px;
+                    transform: translateX(100%);
+                `;
+            }
+
+            notification.style.cssText = `
+                position: fixed;
+                ${positionStyles}
+                background: ${type === 'success' ? '#8b7355' : type === 'error' ? '#e74c3c' : '#3498db'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 10000;
+                max-width: 400px;
+                transition: transform 0.3s ease;
+            `;
+
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = position === 'top-left' ? 'translateX(0)' : 'translateX(0)';
+            }, 100);
+
+            // Close button functionality (only for non-success messages)
+            const closeBtn = notification.querySelector('.notification-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    const exitTransform = position === 'top-left' ? 'translateX(-100%)' : 'translateX(100%)';
+                    notification.style.transform = exitTransform;
+                    setTimeout(() => notification.remove(), 300);
+                });
+            }
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    const exitTransform = position === 'top-left' ? 'translateX(-100%)' : 'translateX(100%)';
+                    notification.style.transform = exitTransform;
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
+
+        function testSuccess() {
+            showNotification('This is a success message!', 'success', 'top-right');
+        }
+
+        function testError() {
+            showNotification('This is an error message!', 'error', 'top-right');
+        }
+
+        function testInfo() {
+            showNotification('This is an info message!', 'info', 'top-right');
+        }
+    </script>
+</body>
+</html> 

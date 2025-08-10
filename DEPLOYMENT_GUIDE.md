@@ -114,16 +114,30 @@ Replace `img/logo.png` with your actual logo.
 1. Check Netlify function logs in dashboard
 2. Verify environment variables are set
 3. Test with a simple email first
+4. Check browser console for errors
+
+### Nodemailer Errors?
+1. **Error: "nodemailer.createTransporter is not a function"**
+   - This has been fixed in the latest code
+   - Redeploy your site to get the fix
+   - The correct function is `createTransport` (not `createTransporter`)
 
 ### Emails Not Sending?
 1. Verify Gmail app password is correct
 2. Check Gmail settings allow "less secure apps"
 3. Check spam folder
+4. Verify environment variables are set correctly
 
 ### Site Not Loading?
 1. Check GitHub Pages settings
 2. Verify all files are uploaded
 3. Check for any JavaScript errors in browser console
+
+### Notification Issues?
+1. Test the notification system using `test-notifications.html`
+2. Success messages should NOT show an X button
+3. Error/Info messages should show an X button
+4. All notifications auto-remove after 5 seconds
 
 ## 📈 Next Steps
 

@@ -41,7 +41,7 @@ exports.handler = async (event, context) => {
     }
 
     // Create email transporter (using Gmail as example)
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER, // Your Gmail address
@@ -138,7 +138,7 @@ exports.handler = async (event, context) => {
       headers,
       body: JSON.stringify({
         success: false,
-        message: 'Internal server error'
+        message: `Internal server error: ${error.message}`
       })
     };
   }
