@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetroHost Collective - Turn Your Extra Room Into Extra Income</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="img/logo.png" alt="MetroHost Collective Logo" class="logo-img">
+                <h2>MetroHost Collective</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#locations" class="nav-link">Locations</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#legal" class="nav-link">Legal</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Turn Your Extra Room Into Extra Income</h1>
+            <p class="hero-subtitle">We photograph, furnish, list, and manage your space. You get paid — we take a commission.</p>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="steps-section">
+        <div class="container">
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-icon">
+                        <span class="step-emoji">📝</span>
+                    </div>
+                    <div class="step-content">
+                        <span class="step-label">Step 1</span>
+                        <h3 class="step-title">Tell Us About Your Space</h3>
+                        <p class="step-description">Answer a few quick questions, share the size, and upload a photo.</p>
+                    </div>
+                </div>
+                <div class="step-card featured">
+                    <div class="step-icon">
+                        <span class="step-emoji">📷</span>
+                    </div>
+                    <div class="step-content">
+                        <span class="step-label">Step 2</span>
+                        <h3 class="step-title">We Handle the Rest</h3>
+                        <p class="step-description">We furnish, photograph, and create a high-converting listing.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">
+                        <span class="step-emoji">💵</span>
+                    </div>
+                    <div class="step-content">
+                        <span class="step-label">Step 3</span>
+                        <h3 class="step-title">You Start Earning</h3>
+                        <p class="step-description">We manage bookings and guests — you get paid every month.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="qualify-button-container">
+                <button id="qualify-btn" class="btn-qualify">See if you qualify</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qualification Funnel Section -->
+    <section id="qualification-funnel" class="qualification-funnel" style="display: none;">
+        <div class="container">
+            <div class="funnel-container">
+                <div class="funnel-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <span class="progress-text" id="progress-text">Step 1 of 5</span>
+                </div>
+                
+                <div class="funnel-content">
+                    <!-- Step 1: Property Basics -->
+                    <div class="funnel-question active" id="step-1">
+                        <h2>Step 1 — Property Basics</h2>
+                        <div class="form-step">
+                            <div class="form-group">
+                                <label for="full-name">Full Name</label>
+                                <input type="text" id="full-name" name="full-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city-zip">City & Zip Code of Property</label>
+                                <input type="text" id="city-zip" name="city-zip" placeholder="e.g., New York, NY 10001" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Do you live at the property?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="live-at-property" value="yes" required>
+                                        <span class="radio-custom"></span>
+                                        Yes
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="live-at-property" value="no" required>
+                                        <span class="radio-custom"></span>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="space-type">Is the space inside your primary residence or a separate unit?</label>
+                                <select id="space-type" name="space-type" required>
+                                    <option value="">Select an option</option>
+                                    <option value="primary-residence">Inside primary residence</option>
+                                    <option value="separate-unit">Separate unit</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Space Details -->
+                    <div class="funnel-question" id="step-2">
+                        <h2>Step 2 — Space Details</h2>
+                        <div class="form-step">
+                            <div class="form-group">
+                                <label for="rental-type">What type of space do you want to rent?</label>
+                                <select id="rental-type" name="rental-type" required>
+                                    <option value="">Select an option</option>
+                                    <option value="bedroom">Bedroom</option>
+                                    <option value="basement">Basement</option>
+                                    <option value="adu">ADU</option>
+                                    <option value="guest-house">Guest House</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="guest-capacity">How many guests can it sleep?</label>
+                                <input type="number" id="guest-capacity" name="guest-capacity" min="1" max="10" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Is it furnished?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="furnished" value="yes" required>
+                                        <span class="radio-custom"></span>
+                                        Yes
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="furnished" value="no" required>
+                                        <span class="radio-custom"></span>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="furniture-description" style="display: none;">
+                                <label for="furniture-details">Please describe the current furniture.</label>
+                                <textarea id="furniture-details" name="furniture-details" rows="3"></textarea>
+                            </div>
+                            <div class="form-group" id="furnishing-offer" style="display: none;">
+                                <label>Are you open to us furnishing it for you?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="open-to-furnishing" value="yes">
+                                        <span class="radio-custom"></span>
+                                        Yes
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="open-to-furnishing" value="no">
+                                        <span class="radio-custom"></span>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="bathroom-situation">Bathroom situation:</label>
+                                <select id="bathroom-situation" name="bathroom-situation" required>
+                                    <option value="">Select an option</option>
+                                    <option value="private">Private bathroom</option>
+                                    <option value="shared">Shared bathroom</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Private entrance?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="private-entrance" value="yes" required>
+                                        <span class="radio-custom"></span>
+                                        Yes
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="private-entrance" value="no" required>
+                                        <span class="radio-custom"></span>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="approximate-size">Approximate size (sq ft)</label>
+                                <input type="number" id="approximate-size" name="approximate-size" min="50" placeholder="e.g., 200" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Current Condition -->
+                    <div class="funnel-question" id="step-3">
+                        <h2>Step 3 — Current Condition</h2>
+                        <div class="form-step">
+                            <div class="form-group">
+                                <label for="space-photos">Upload photos of the space (up to 5)</label>
+                                <input type="file" id="space-photos" name="space-photos" multiple accept="image/*">
+                                <small>You can select multiple photos. Maximum 5 files.</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Is the space clean and ready for photography?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="ready-for-photography" value="yes" required>
+                                        <span class="radio-custom"></span>
+                                        Yes
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="ready-for-photography" value="no" required>
+                                        <span class="radio-custom"></span>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Do you allow pets in the space?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="pets-allowed" value="yes" required>
+                                        <span class="radio-custom"></span>
+                                        Yes
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="pets-allowed" value="no" required>
+                                        <span class="radio-custom"></span>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="restrictions">Are there any restrictions (HOA rules, noise, parking, etc.)?</label>
+                                <textarea id="restrictions" name="restrictions" rows="3" placeholder="Please describe any restrictions or rules..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Your Goals -->
+                    <div class="funnel-question" id="step-4">
+                        <h2>Step 4 — Your Goals</h2>
+                        <div class="form-step">
+                            <div class="form-group">
+                                <label for="hosting-timeline">How soon do you want to start hosting?</label>
+                                <select id="hosting-timeline" name="hosting-timeline" required>
+                                    <option value="">Select an option</option>
+                                    <option value="asap">ASAP</option>
+                                    <option value="1-3-months">1-3 months</option>
+                                    <option value="just-exploring">Just exploring</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="priority">What's most important to you?</label>
+                                <select id="priority" name="priority" required>
+                                    <option value="">Select an option</option>
+                                    <option value="maximizing-income">Maximizing income</option>
+                                    <option value="minimal-work">Minimal work</option>
+                                    <option value="long-term-bookings">Long-term bookings</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="involvement-level">How involved do you want to be?</label>
+                                <select id="involvement-level" name="involvement-level" required>
+                                    <option value="">Select an option</option>
+                                    <option value="fully-hands-off">Fully hands-off</option>
+                                    <option value="partial-involvement">Partial involvement</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Final Contact & Consent -->
+                    <div class="funnel-question" id="step-5">
+                        <h2>Step 5 — Final Contact & Consent</h2>
+                        <div class="form-step">
+                            <div class="info-box">
+                                <p><strong>Once you submit, our team will review your space and reach out with a free income projection and next steps.</strong></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="preferred-contact">Preferred contact method</label>
+                                <select id="preferred-contact" name="preferred-contact" required>
+                                    <option value="">Select an option</option>
+                                    <option value="call">Call</option>
+                                    <option value="text">Text</option>
+                                    <option value="email">Email</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="best-time">Best time to contact you</label>
+                                <input type="text" id="best-time" name="best-time" placeholder="e.g., Weekdays 9AM-5PM, Evenings after 6PM" required>
+                            </div>
+                            <div class="form-group">
+                                <div class="consent-checkbox">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="consent-checkbox" required>
+                                        <span class="checkmark"></span>
+                                        I understand MetroHost Collective will review my property for hosting suitability and may contact me via phone, email, or SMS.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="funnel-navigation">
+                    <button class="back-btn" id="back-btn" style="display: none;">← Back</button>
+                    <button class="next-btn" id="next-btn">Next</button>
+                    <button class="submit-btn" id="submit-btn" style="display: none;">Submit & Get My Free Airbnb Income Estimate</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About MetroHost Collective</h2>
+            <p>We specialize in helping property owners maximize their rental income by providing comprehensive management services. Whether you're too busy, too far away, or simply want a hands-off approach to property management, we've got you covered.</p>
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Trusted & Reliable</h4>
+                    <p>Professional service with proven results</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Maximize Returns</h4>
+                    <p>Optimize pricing and occupancy rates</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-clock"></i>
+                    <h4>24/7 Support</h4>
+                    <p>Round-the-clock assistance for you and your guests</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-camera"></i>
+                    <h3>Professional Photography</h3>
+                    <p>High-quality photos that showcase your property's best features</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-list-alt"></i>
+                    <h3>Listing Management</h3>
+                    <p>Create and optimize listings across multiple platforms</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Guest Communication</h3>
+                    <p>Handle all guest inquiries and booking requests</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-broom"></i>
+                    <h3>Cleaning Services</h3>
+                    <p>Professional cleaning between guests</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Maintenance Coordination</h3>
+                    <p>Coordinate repairs and maintenance as needed</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Performance Analytics</h3>
+                    <p>Detailed reports on your property's performance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2>Pricing & Fees</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Standard Package</h3>
+                    <div class="price">15%</div>
+                    <p class="price-subtitle">of monthly rental income</p>
+                    <ul>
+                        <li>Professional photography</li>
+                        <li>Listing management</li>
+                        <li>Guest communication</li>
+                        <li>Cleaning coordination</li>
+                        <li>Basic maintenance support</li>
+                    </ul>
+                    <button class="btn-primary">Get Started</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Premium Package</h3>
+                    <div class="price">20%</div>
+                    <p class="price-subtitle">of monthly rental income</p>
+                    <ul>
+                        <li>Everything in Standard</li>
+                        <li>Premium photography package</li>
+                        <li>24/7 guest support</li>
+                        <li>Priority maintenance</li>
+                        <li>Performance analytics</li>
+                        <li>Market rate optimization</li>
+                    </ul>
+                    <button class="btn-primary">Get Started</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Custom Package</h3>
+                    <div class="price">Custom</div>
+                    <p class="price-subtitle">tailored to your needs</p>
+                    <ul>
+                        <li>Customized service selection</li>
+                        <li>Flexible pricing structure</li>
+                        <li>Dedicated account manager</li>
+                        <li>Specialized requirements</li>
+                    </ul>
+                    <button class="btn-primary">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+                    <div class="testimonial-author">
+                        <strong>Lorem Ipsum</strong>
+                        <span>Property Owner, Dolor Sit Amet</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                    <div class="testimonial-author">
+                        <strong>Consectetur Adipiscing</strong>
+                        <span>Property Owner, Elit Sed Do</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."</p>
+                    <div class="testimonial-author">
+                        <strong>Eiusmod Tempor</strong>
+                        <span>Property Owner, Incididunt Ut</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="locations-section">
+        <div class="container">
+            <h2>Where We Operate</h2>
+            <div class="locations-grid">
+                <div class="location-card">
+                    <h3>Queens</h3>
+                    <p>Astoria, Long Island City, Forest Hills, Flushing, Jamaica, Bayside, Fresh Meadows, Rego Park, Woodside, Sunnyside</p>
+                </div>
+                <div class="location-card">
+                    <h3>Manhattan</h3>
+                    <p>Upper East Side, Upper West Side, Midtown, Chelsea, Greenwich Village, East Village, Lower East Side, Financial District, Harlem, Washington Heights</p>
+                </div>
+                <div class="location-card">
+                    <h3>Bronx</h3>
+                    <p>Riverdale, Kingsbridge, Fordham, Pelham Bay, Throgs Neck, City Island, Morris Park, Pelham Parkway, Woodlawn, Wakefield</p>
+                </div>
+                <div class="location-card">
+                    <h3>Brooklyn</h3>
+                    <p>Williamsburg, Park Slope, Brooklyn Heights, DUMBO, Carroll Gardens, Cobble Hill, Boerum Hill, Fort Greene, Clinton Hill, Prospect Heights</p>
+                </div>
+                <div class="location-card">
+                    <h3>Staten Island</h3>
+                    <p>St. George, Tompkinsville, New Brighton, West Brighton, Stapleton, Rosebank, Fort Wadsworth, South Beach, Midland Beach, New Dorp</p>
+                </div>
+                <div class="location-card">
+                    <h3>Nassau County</h3>
+                    <p>Great Neck, Manhasset, Roslyn, Port Washington, Garden City, Mineola, Hempstead, Freeport, Long Beach, Rockville Centre</p>
+                </div>
+                <div class="location-card">
+                    <h3>Suffolk County</h3>
+                    <p>Huntington, Smithtown, Islip, Brookhaven, Riverhead, Southampton, East Hampton, Shelter Island, Southold, Babylon</p>
+                </div>
+                <div class="location-card">
+                    <h3>Tompkins County</h3>
+                    <p>Ithaca, Dryden, Lansing, Newfield, Caroline, Danby, Enfield, Groton, Ulysses, Trumansburg</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Get Started Today</h2>
+            <p>Ready to maximize your rental income? Contact us to learn more about our services.</p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hello@metrohostcollective.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Monday - Friday: 9AM - 6PM EST</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone">
+                    </div>
+                    <div class="form-group">
+                        <select id="service" name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="standard">Standard Package</option>
+                            <option value="premium">Premium Package</option>
+                            <option value="custom">Custom Package</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Tell us about your property and needs" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Section -->
+    <section id="legal" class="legal-section">
+        <div class="container">
+            <h2>Legal Information</h2>
+            <div class="legal-grid">
+                <div class="legal-card">
+                    <h3>Terms of Service</h3>
+                    <p>Our terms and conditions for using MetroHost Collective services.</p>
+                    <a href="#" class="btn-secondary">Read Terms</a>
+                </div>
+                <div class="legal-card">
+                    <h3>Privacy Policy</h3>
+                    <p>How we collect, use, and protect your personal information.</p>
+                    <a href="#" class="btn-secondary">Read Policy</a>
+                </div>
+                <div class="legal-card">
+                    <h3>Service Agreement</h3>
+                    <p>Detailed agreement outlining our service commitments and responsibilities.</p>
+                    <a href="#" class="btn-secondary">Read Agreement</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MetroHost Collective</h3>
+                    <p>Professional property management services to maximize your rental income.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>+1 (555) 123-4567</li>
+                        <li>hello@metrohostcollective.com</li>
+                        <li>Mon-Fri: 9AM-6PM EST</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MetroHost Collective. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

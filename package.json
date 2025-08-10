@@ -1,0 +1,24 @@
+{
+  "name": "metrohost-collective",
+  "version": "1.0.0",
+  "description": "MetroHost Collective website with backend functionality",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "keywords": [
+    "property-management",
+    "airbnb",
+    "rental",
+    "real-estate"
+  ],
+  "author": "MetroHost Collective",
+  "license": "MIT"
+} 
