@@ -11,10 +11,16 @@ body {
     color: #2c2c2c;
     background-color: #f8f8f8;
     overflow-x: hidden;
-    transform: scale(0.75);
-    transform-origin: top left;
-    width: 133.33%;
-    height: 133.33%;
+    zoom: 0.75;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -573,7 +579,6 @@ body {
 /* Section Styles */
 .about-section,
 .services-section,
-.pricing-section,
 .testimonials-section,
 .locations-section,
 .contact-section,
@@ -587,10 +592,6 @@ body {
 
 .services-section {
     background: #f8f8f8;
-}
-
-.pricing-section {
-    background: #ffffff;
 }
 
 .testimonials-section {
@@ -607,6 +608,7 @@ body {
 
 .legal-section {
     background: #ffffff;
+    padding-bottom: 3rem;
 }
 
 /* Section Headers */
@@ -618,14 +620,7 @@ h2 {
     color: #2c2c2c;
 }
 
-.pricing-subtitle {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #5a6b47;
-    font-weight: 500;
-    margin-bottom: 3rem;
-    font-style: italic;
-}
+
 
 .about-section p,
 .contact-section p {
@@ -705,81 +700,15 @@ h2 {
     color: #666666;
 }
 
-/* Pricing Grid */
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
 
-.pricing-card {
-    background: #ffffff;
-    padding: 2.5rem;
-    border-radius: 20px;
-    text-align: center;
-    border: 1px solid rgba(90, 107, 71, 0.2);
-    transition: all 0.3s ease;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.pricing-card.featured {
-    background: rgba(90, 107, 71, 0.05);
-    border: 2px solid #5a6b47;
-    transform: scale(1.05);
-}
-
-.pricing-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(90, 107, 71, 0.1);
-}
-
-.pricing-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #2c2c2c;
-}
-
-.price {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #5a6b47;
-    margin-bottom: 0.5rem;
-}
-
-.price-subtitle {
-    color: #666666;
-    margin-bottom: 2rem;
-}
-
-.pricing-card ul {
-    list-style: none;
-    margin-bottom: 2rem;
-    text-align: left;
-}
-
-.pricing-card li {
-    color: #666666;
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.pricing-card li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #5a6b47;
-    font-weight: bold;
-}
 
 /* Testimonials Carousel */
 .testimonials-carousel {
     position: relative;
     margin-top: 3rem;
+    margin-bottom: 4rem;
     overflow: hidden;
-    max-width: 400px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -787,7 +716,7 @@ h2 {
 .testimonials-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    gap: 0;
+    gap: 2rem;
 }
 
 .testimonial-card {
@@ -796,7 +725,8 @@ h2 {
     border-radius: 15px;
     border: 1px solid rgba(90, 107, 71, 0.2);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    width: 100%;
+    min-width: 350px;
+    max-width: 400px;
     flex-shrink: 0;
     transition: all 0.3s ease;
 }
@@ -857,6 +787,11 @@ h2 {
     justify-content: center;
     gap: 0.5rem;
     margin-top: 2rem;
+    position: absolute;
+    bottom: -3rem;
+    left: 0;
+    right: 0;
+    z-index: 10;
 }
 
 .dot {
@@ -1339,10 +1274,13 @@ h2 {
 
     /* Testimonials mobile styles */
     .testimonials-carousel {
-        max-width: 350px;
+        max-width: 100%;
+        padding: 0 1rem;
     }
 
     .testimonial-card {
+        min-width: 300px;
+        max-width: 350px;
         padding: 1.5rem;
     }
 
@@ -1402,10 +1340,13 @@ h2 {
 
     /* Testimonials mobile styles */
     .testimonials-carousel {
-        max-width: 320px;
+        max-width: 100%;
+        padding: 0 0.5rem;
     }
 
     .testimonial-card {
+        min-width: 280px;
+        max-width: 320px;
         padding: 1.25rem;
     }
 
@@ -1419,10 +1360,7 @@ h2 {
     }
 }
 
-/* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
-}
+
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {

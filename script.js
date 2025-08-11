@@ -58,10 +58,11 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Testimonials Carousel
-let currentSlide = 0;
+// Testimonials Marquee
+let currentPosition = 0;
 let testimonialsTrack, dots, totalSlides = 5;
-let carouselInterval;
+let marqueeInterval;
+let isPaused = false;
 
 function initCarousel() {
     testimonialsTrack = document.querySelector('.testimonials-track');
@@ -69,33 +70,57 @@ function initCarousel() {
     
     if (!testimonialsTrack || !dots.length) return;
     
-    function updateCarousel() {
-        const slideWidth = testimonialsTrack.offsetWidth; // Full width of the carousel container
-        const translateX = -currentSlide * slideWidth;
+    // Clone testimonials for seamless loop
+    const originalCards = testimonialsTrack.querySelectorAll('.testimonial-card');
+    originalCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        testimonialsTrack.appendChild(clone);
+    });
+    
+    function updateMarquee() {
+        const cardWidth = 370; // 350px card + 20px gap
+        const translateX = -currentPosition * cardWidth;
         testimonialsTrack.style.transform = `translateX(${translateX}px)`;
         
-        // Update dots
+        // Update dots based on original position
+        const originalPosition = currentPosition % totalSlides;
         dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
+            dot.classList.toggle('active', index === originalPosition);
         });
     }
 
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
+        if (isPaused) return;
+        currentPosition++;
+        
+        // Reset to beginning when we reach the end of original cards
+        if (currentPosition >= totalSlides) {
+            currentPosition = 0;
+        }
+        
+        updateMarquee();
     }
 
     function goToSlide(slideIndex) {
-        currentSlide = slideIndex;
-        updateCarousel();
+        currentPosition = slideIndex;
+        updateMarquee();
     }
 
-    // Auto-advance carousel
-    carouselInterval = setInterval(nextSlide, 5000);
+    // Continuous marquee animation
+    marqueeInterval = setInterval(nextSlide, 3000);
 
     // Dot navigation
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => goToSlide(index));
+    });
+
+    // Pause on hover
+    testimonialsTrack.addEventListener('mouseenter', () => {
+        isPaused = true;
+    });
+
+    testimonialsTrack.addEventListener('mouseleave', () => {
+        isPaused = false;
     });
 
     // Touch/swipe support for mobile
@@ -104,11 +129,13 @@ function initCarousel() {
 
     testimonialsTrack.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
+        isPaused = true;
     });
 
     testimonialsTrack.addEventListener('touchend', (e) => {
         endX = e.changedTouches[0].clientX;
         handleSwipe();
+        setTimeout(() => { isPaused = false; }, 1000);
     });
 
     function handleSwipe() {
@@ -121,17 +148,17 @@ function initCarousel() {
                 nextSlide();
             } else {
                 // Swipe right - previous slide
-                currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
-                updateCarousel();
+                currentPosition = currentPosition === 0 ? totalSlides - 1 : currentPosition - 1;
+                updateMarquee();
             }
         }
     }
 
-    // Initialize carousel
-    updateCarousel();
+    // Initialize marquee
+    updateMarquee();
     
     // Handle window resize
-    window.addEventListener('resize', updateCarousel);
+    window.addEventListener('resize', updateMarquee);
 }
 
 // Initialize carousel when DOM is loaded
