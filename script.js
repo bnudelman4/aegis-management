@@ -214,13 +214,21 @@ const totalSteps = 5;
 const formData = {};
 
 // Show qualification funnel
-document.getElementById('qualify-btn').addEventListener('click', () => {
+function showQualificationFunnel() {
     document.querySelector('.steps-section').style.display = 'none';
     document.getElementById('qualification-funnel').style.display = 'block';
     showStep(1);
     updateProgress();
     updateNavigation();
-});
+    
+    // Scroll to the qualification funnel
+    document.getElementById('qualification-funnel').scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+    });
+}
+
+document.getElementById('qualify-btn').addEventListener('click', showQualificationFunnel);
 
 // Show specific step
 function showStep(stepNumber) {
