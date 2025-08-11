@@ -58,6 +58,85 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Testimonials Carousel
+let currentSlide = 0;
+let testimonialsTrack, dots, totalSlides = 5;
+let carouselInterval;
+
+function initCarousel() {
+    testimonialsTrack = document.querySelector('.testimonials-track');
+    dots = document.querySelectorAll('.dot');
+    
+    if (!testimonialsTrack || !dots.length) return;
+    
+    function updateCarousel() {
+        const slideWidth = testimonialsTrack.offsetWidth; // Full width of the carousel container
+        const translateX = -currentSlide * slideWidth;
+        testimonialsTrack.style.transform = `translateX(${translateX}px)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+    }
+
+    function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateCarousel();
+    }
+
+    // Auto-advance carousel
+    carouselInterval = setInterval(nextSlide, 5000);
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+    });
+
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let endX = 0;
+
+    testimonialsTrack.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    testimonialsTrack.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next slide
+                nextSlide();
+            } else {
+                // Swipe right - previous slide
+                currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
+                updateCarousel();
+            }
+        }
+    }
+
+    // Initialize carousel
+    updateCarousel();
+    
+    // Handle window resize
+    window.addEventListener('resize', updateCarousel);
+}
+
+// Initialize carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', initCarousel);
+
 // Notification system
 function showNotification(message, type = 'info', position = 'top-right') {
     // Remove existing notifications
