@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const { saveContactForm } = require('./db-utils');
 
 exports.handler = async (event, context) => {
   // Enable CORS
@@ -91,20 +92,34 @@ exports.handler = async (event, context) => {
     const confirmationEmail = {
       from: process.env.EMAIL_USER,
       to: formData.email,
-      subject: 'Thank you for contacting MetroHost Collective',
+      subject: 'Thank you for contacting Aegis Management',
       html: `
         <h2>Thank you for reaching out, ${formData.name}!</h2>
         <p>We've received your message and will get back to you within 24 hours.</p>
         <p>If you have any urgent questions, feel free to call us at +1 (555) 123-4567.</p>
         <br>
-        <p>Best regards,<br>The MetroHost Collective Team</p>
+        <p>Best regards,<br>The Aegis Management Team</p>
         <p><strong>Phone:</strong> +1 (555) 123-4567<br>
-        <strong>Email:</strong> hello@metrohostcollective.com<br>
+        <strong>Email:</strong> hello@aegismanagement.com<br>
         <strong>Hours:</strong> Monday - Friday: 9AM - 6PM EST</p>
       `
     };
 
     await transporter.sendMail(confirmationEmail);
+
+    // Save to database
+    const metadata = {
+      ipAddress: event.headers['x-forwarded-for'] || event.headers['client-ip'] || 'unknown',
+      userAgent: event.headers['user-agent'] || 'unknown'
+    };
+    
+    try {
+      await saveContactForm(formData, metadata);
+      console.log('Contact form saved to database successfully');
+    } catch (dbError) {
+      console.error('Error saving to database:', dbError);
+      // Don't fail the entire request if database save fails
+    }
 
     return {
       statusCode: 200,

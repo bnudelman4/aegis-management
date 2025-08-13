@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const { saveQualificationForm } = require('./db-utils');
 
 exports.handler = async (event, context) => {
   // Enable CORS
@@ -53,7 +54,7 @@ exports.handler = async (event, context) => {
     const teamEmail = {
       from: process.env.EMAIL_USER,
       to: process.env.TEAM_EMAIL || process.env.EMAIL_USER, // Your team email
-      subject: 'New Property Application - MetroHost Collective',
+      subject: 'New Property Application - Aegis Management',
       html: `
         <h2>New Property Application Received</h2>
         <h3>Contact Information:</h3>
@@ -121,13 +122,28 @@ exports.handler = async (event, context) => {
 
     await transporter.sendMail(confirmationEmail);
 
+    // Save to database
+    const metadata = {
+      ipAddress: event.headers['x-forwarded-for'] || event.headers['client-ip'] || 'unknown',
+      userAgent: event.headers['user-agent'] || 'unknown'
+    };
+    
+    let dbResult;
+    try {
+      dbResult = await saveQualificationForm(userData, metadata);
+      console.log('Qualification form saved to database successfully');
+    } catch (dbError) {
+      console.error('Error saving to database:', dbError);
+      // Don't fail the entire request if database save fails
+    }
+
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
         success: true,
         message: 'Application submitted successfully',
-        applicationId: `app_${Date.now()}`
+        applicationId: dbResult?.application_id || `app_${Date.now()}`
       })
     };
 
