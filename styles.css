@@ -301,6 +301,8 @@ html {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(90, 107, 71, 0.3);
+    text-align: center;
+    line-height: 1;
 }
 
 .btn-qualify:hover {

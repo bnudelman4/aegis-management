@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualification Form - Aegis Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        /* Form page specific styles */
+        .form-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            padding-top: 80px;
+        }
+        
+        .form-header {
+            text-align: center;
+            padding: 3rem 0 2rem 0;
+            background: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .form-header h1 {
+            color: #2c2c2c;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .form-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #5a6b47;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .back-to-home:hover {
+            color: #2c2c2c;
+        }
+        
+        .back-to-home i {
+            font-size: 0.9rem;
+        }
+        
+        /* Override some main page styles for the form page */
+        .form-page .qualification-funnel {
+            display: block !important;
+            background: transparent;
+            padding: 0;
+        }
+        
+        .form-page .funnel-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .form-page .funnel-progress {
+            margin-bottom: 2rem;
+        }
+        
+        .form-page .funnel-content {
+            margin-bottom: 2rem;
+        }
+        
+        .form-page .funnel-navigation {
+            border-top: 1px solid #eee;
+            padding-top: 2rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-header p {
+                font-size: 1rem;
+            }
+            
+            .form-page .funnel-container {
+                padding: 1.5rem;
+                margin: 0 1rem 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="img/logo.png" alt="Aegis Management Logo" class="logo-img">
+                <h2>Aegis Management</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About Us</a>
+                <a href="index.html#services" class="nav-link">Services</a>
+                <a href="index.html#testimonials" class="nav-link">Testimonials</a>
+                <a href="index.html#locations" class="nav-link">Locations</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="index.html#legal" class="nav-link">Legal</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form Page Content -->
+    <div class="form-page">
+        <div class="form-container">
+            <!-- Back to Home Link -->
+            <a href="index.html" class="back-to-home">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+            
+            <!-- Form Header -->
+            <div class="form-header">
+                <h1>See If You Qualify</h1>
+                <p>Tell us about your space and we'll provide you with a free income projection. Our team will review your property and reach out with personalized next steps.</p>
+            </div>
+
+            <!-- Qualification Funnel Section -->
+            <section id="qualification-funnel" class="qualification-funnel">
+                <div class="funnel-container">
+                    <div class="funnel-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <span class="progress-text" id="progress-text">Step 1 of 5</span>
+                    </div>
+                    
+                    <div class="funnel-content">
+                        <!-- Step 1: Property Basics -->
+                        <div class="funnel-question active" id="step-1">
+                            <h2>Step 1 — Property Basics</h2>
+                            <div class="form-step">
+                                <div class="form-group">
+                                    <label for="full-name">Full Name</label>
+                                    <input type="text" id="full-name" name="full-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city-zip">City & Zip Code of Property</label>
+                                    <input type="text" id="city-zip" name="city-zip" placeholder="e.g., New York, NY 10001" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Do you live at the property?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="live-at-property" value="yes" required>
+                                            <span class="radio-custom"></span>
+                                            Yes
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="live-at-property" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="space-type">Is the space inside your primary residence or a separate unit?</label>
+                                    <select id="space-type" name="space-type" required>
+                                        <option value="">Select an option</option>
+                                        <option value="primary-residence">Inside primary residence</option>
+                                        <option value="separate-unit">Separate unit</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Space Details -->
+                        <div class="funnel-question" id="step-2">
+                            <h2>Step 2 — Space Details</h2>
+                            <div class="form-step">
+                                <div class="form-group">
+                                    <label for="rental-type">What type of space do you want to rent?</label>
+                                    <select id="rental-type" name="rental-type" required>
+                                        <option value="">Select an option</option>
+                                        <option value="bedroom">Bedroom</option>
+                                        <option value="basement">Basement</option>
+                                        <option value="adu">ADU</option>
+                                        <option value="guest-house">Guest House</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="guest-capacity">How many guests can it sleep?</label>
+                                    <input type="number" id="guest-capacity" name="guest-capacity" min="1" max="10" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Is it furnished?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="furnished" value="yes" required>
+                                            <span class="radio-custom"></span>
+                                            Yes
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="furnished" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="furniture-description" style="display: none;">
+                                    <label for="furniture-details">Please describe the current furniture.</label>
+                                    <textarea id="furniture-details" name="furniture-details" rows="3"></textarea>
+                                </div>
+                                <div class="form-group" id="furnishing-offer" style="display: none;">
+                                    <label>Are you open to us furnishing it for you?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="open-to-furnishing" value="yes">
+                                            <span class="radio-custom"></span>
+                                            Yes
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="open-to-furnishing" value="no">
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bathroom-situation">Bathroom situation:</label>
+                                    <select id="bathroom-situation" name="bathroom-situation" required>
+                                        <option value="">Select an option</option>
+                                        <option value="private">Private bathroom</option>
+                                        <option value="shared">Shared bathroom</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Private entrance?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="private-entrance" value="yes" required>
+                                            <span class="radio-custom"></span>
+                                            Yes
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="private-entrance" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="approximate-size">Approximate size (sq ft)</label>
+                                    <input type="number" id="approximate-size" name="approximate-size" min="50" placeholder="e.g., 200" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Current Condition -->
+                        <div class="funnel-question" id="step-3">
+                            <h2>Step 3 — Current Condition</h2>
+                            <div class="form-step">
+                                <div class="form-group">
+                                    <label for="space-photos">Upload photos of the space (up to 5)</label>
+                                    <input type="file" id="space-photos" name="space-photos" multiple accept="image/*">
+                                    <small>You can select multiple photos. Maximum 5 files.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Is the space clean and ready for photography?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="ready-for-photography" value="yes" required>
+                                            <span class="radio-custom"></span>
+                                            Yes
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="ready-for-photography" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Do you allow pets in the space?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="pets-allowed" value="yes" required>
+                                            <span class="radio-custom"></span>
+                                            Yes
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="pets-allowed" value="no" required>
+                                            <span class="radio-custom"></span>
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="restrictions">Are there any restrictions (HOA rules, noise, parking, etc.)?</label>
+                                    <textarea id="restrictions" name="restrictions" rows="3" placeholder="Please describe any restrictions or rules..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Your Goals -->
+                        <div class="funnel-question" id="step-4">
+                            <h2>Step 4 — Your Goals</h2>
+                            <div class="form-step">
+                                <div class="form-group">
+                                    <label for="hosting-timeline">How soon do you want to start hosting?</label>
+                                    <select id="hosting-timeline" name="hosting-timeline" required>
+                                        <option value="">Select an option</option>
+                                        <option value="asap">ASAP</option>
+                                        <option value="1-3-months">1-3 months</option>
+                                        <option value="just-exploring">Just exploring</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="priority">What's most important to you?</label>
+                                    <select id="priority" name="priority" required>
+                                        <option value="">Select an option</option>
+                                        <option value="maximizing-income">Maximizing income</option>
+                                        <option value="minimal-work">Minimal work</option>
+                                        <option value="long-term-bookings">Long-term bookings</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="involvement-level">How involved do you want to be?</label>
+                                    <select id="involvement-level" name="involvement-level" required>
+                                        <option value="">Select an option</option>
+                                        <option value="fully-hands-off">Fully hands-off</option>
+                                        <option value="partial-involvement">Partial involvement</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Final Contact & Consent -->
+                        <div class="funnel-question" id="step-5">
+                            <h2>Step 5 — Final Contact & Consent</h2>
+                            <div class="form-step">
+                                <div class="info-box">
+                                    <p><strong>Once you submit, our team will review your space and reach out with a free income projection and next steps.</strong></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="preferred-contact">Preferred contact method</label>
+                                    <select id="preferred-contact" name="preferred-contact" required>
+                                        <option value="">Select an option</option>
+                                        <option value="call">Call</option>
+                                        <option value="text">Text</option>
+                                        <option value="email">Email</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="best-time">Best time to contact you</label>
+                                    <input type="text" id="best-time" name="best-time" placeholder="e.g., Weekdays 9AM-5PM, Evenings after 6PM" required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="consent-checkbox">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="consent-checkbox" required>
+                                            <span class="checkmark"></span>
+                                            I understand Aegis Management will review my property for hosting suitability and may contact me via phone, email, or SMS.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="funnel-navigation">
+                        <button class="back-btn" id="back-btn" style="display: none;">← Back</button>
+                        <button class="next-btn" id="next-btn">Next</button>
+                        <button class="submit-btn" id="submit-btn" style="display: none;">Submit & Get My Free Airbnb Income Estimate</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="qualification-form.js"></script>
+</body>
+</html>
